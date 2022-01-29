@@ -3,9 +3,11 @@ using UnityEngine;
 
 public class Door : ShiftBehaviour
 {
-	[SerializeField] private Collider2D d2Collider;
+	[SerializeField] private Collider2D boulderBlocker;
+	[SerializeField] private Collider2D playerBlocker;
 
 	private Rigidbody[] chunks;
+	private bool isBroken;
 
 	protected override void Start()
 	{
@@ -18,11 +20,18 @@ public class Door : ShiftBehaviour
 	{
 		if (state == WorldState.RealWorld)
 		{
-			d2Collider.enabled = false;
+			boulderBlocker.enabled = false;
+
+			if (!isBroken)
+				playerBlocker.enabled = true;
 		}
 		else
 		{
-			d2Collider.enabled = true;
+			if (!isBroken)
+			{
+				boulderBlocker.enabled = true;
+				playerBlocker.enabled = true;
+			}
 		}
 	}
 
@@ -35,6 +44,9 @@ public class Door : ShiftBehaviour
 			{
 				chunk.isKinematic = false;
 			}
+
+			isBroken = true;
+			playerBlocker.enabled = false;
 		}
 	}
 }
