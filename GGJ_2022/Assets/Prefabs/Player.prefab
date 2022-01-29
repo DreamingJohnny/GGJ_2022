@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2136415219108914102}
   - component: {fileID: 2136415219108914097}
   - component: {fileID: 2136415219108914101}
+  - component: {fileID: 3576559237354330259}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -149,6 +150,23 @@ MonoBehaviour:
   deceleration: 25
   jumpVelocity: 8
   waterJumpVelocityMultiplier: 1
+--- !u!114 &3576559237354330259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2136415219108914096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9ade2cfb08e4e4bb114d32ca9b13f02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
+  maxHealth: 3
+  onHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2136415219772631865
 GameObject:
   m_ObjectHideFlags: 0
