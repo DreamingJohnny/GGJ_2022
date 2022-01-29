@@ -4,6 +4,8 @@ using UnityEngine;
 [DefaultExecutionOrder(10)]
 public class PlayerAnimationController : MonoBehaviour
 {
+	[SerializeField] private AnimationClip landAnimation;
+
 	private Animator animator;
 	private PlayerController playerController;
 	private GroundDetector groundDetector;
@@ -11,6 +13,8 @@ public class PlayerAnimationController : MonoBehaviour
 	private new Rigidbody2D rigidbody;
 
 	private float lastNonZeroHorizontalInput = 1f;
+	private float animationWaitTimer = 0f;
+	private bool wasJumping;
 
 	private void Start()
 	{
@@ -23,10 +27,15 @@ public class PlayerAnimationController : MonoBehaviour
 
 	private void Update()
 	{
+		animationWaitTimer -= Time.deltaTime;
+		if (animationWaitTimer > 0f)
+			return;
+
 		if (playerController.horizontalInput != 0)
 			lastNonZeroHorizontalInput = playerController.horizontalInput;
 
-		bool isMoving = Mathf.Abs(rigidbody.velocity.x) > 0.05f;
+		Vector2 velocity = rigidbody.velocity;
+		bool isMoving = Mathf.Abs(velocity.x) > 0.05f;
 
 		spriteRenderer.flipX = lastNonZeroHorizontalInput < 0;
 
@@ -53,10 +62,17 @@ public class PlayerAnimationController : MonoBehaviour
 		}
 		else
 		{
-			if (playerController.isJumping)
+			if (playerController.isJumping && velocity.y > 0)
 				animator.Play("Jump");
 			else
 				animator.Play("In Air");
 		}
+
+		wasJumping = playerController.isJumping;
+	}
+
+	private void WaitFor(float seconds)
+	{
+		animationWaitTimer = seconds;
 	}
 }
