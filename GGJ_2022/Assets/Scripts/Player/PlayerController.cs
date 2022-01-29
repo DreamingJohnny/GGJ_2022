@@ -17,6 +17,28 @@ public class PlayerController : MonoBehaviour
 	private bool jumpInput;
 	private bool isJumping;
 	private bool isJumpingInWater;
+	private bool isFrozenInPlace;
+
+	public bool IsFrozenInPlace
+	{
+		get => isFrozenInPlace;
+		set
+		{
+			isFrozenInPlace = value;
+			rigidbody.isKinematic = value;
+
+			if (isFrozenInPlace)
+			{
+				rigidbody.velocity = Vector2.zero;
+				rigidbody.gravityScale = 0f;
+			}
+			else
+			{
+				rigidbody.gravityScale = 1f;
+			}
+		}
+	}
+
 
 	private void Start()
 	{
@@ -37,6 +59,9 @@ public class PlayerController : MonoBehaviour
 
 	private void FixedUpdate()
 	{
+		if (IsFrozenInPlace)
+			return;
+
 		Vector2 velocity = rigidbody.velocity;
 
 		HandleMovement(ref velocity);
