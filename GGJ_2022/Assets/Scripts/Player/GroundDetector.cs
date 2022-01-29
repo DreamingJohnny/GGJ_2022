@@ -11,6 +11,7 @@ public class GroundDetector : MonoBehaviour
 
 	[SerializeField] private Collider2D groundCheckCollider;
 	[SerializeField] private Collider2D waterCheckCollider;
+	[SerializeField] private Collider2D boulderCheckCollider;
 
 	[Header("Readout")]
 	public bool isGrounded;
@@ -23,7 +24,7 @@ public class GroundDetector : MonoBehaviour
 		isGrounded = groundCheckCollider.IsTouchingLayers(groundLayer);
 		isInWater = waterCheckCollider.IsTouchingLayers(waterLayer);
 		isOnMoving = groundCheckCollider.IsTouchingLayers(movingLayer);
-		isTouchingBoulder = waterCheckCollider.IsTouchingLayers(boulderLayer);
+		isTouchingBoulder = boulderCheckCollider.IsTouchingLayers(boulderLayer);
 
 		//new ContactFilter2D(){}
 
