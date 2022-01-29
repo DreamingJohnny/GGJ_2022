@@ -33,9 +33,9 @@ public class PlayerAnimationController : MonoBehaviour
 		if (groundDetector.isInWater)
 		{
 			if (isMoving)
-				animator.Play("Swim");
+				animator.Play("Swim Forward");
 			else
-				animator.Play("Drown");
+				animator.Play("Swim Up");
 		}
 		else if (groundDetector.isGrounded)
 		{
