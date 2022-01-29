@@ -16,11 +16,13 @@ public class Water : ShiftBehaviour
 		{
 			collider.isTrigger = true;
 			collider.usedByEffector = true;
+			gameObject.layer = LayerMask.NameToLayer("Water");
 		}
 		else
 		{
 			collider.isTrigger = false;
 			collider.usedByEffector = false;
+			gameObject.layer = LayerMask.NameToLayer("Ground");
 		}
 	}
 }

@@ -9,14 +9,19 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private float maxSpeed = 15f;
 	[SerializeField] private float deceleration = 0.9f;
 	[SerializeField] private float jumpVelocity = 25f;
+	[SerializeField] private float waterJumpVelocityMultiplier = 0.5f;
 
 	private new Rigidbody2D rigidbody;
+	private GroundDetector groundDetector;
 	private float horizontalInput;
 	private bool jumpInput;
+	private bool isJumping;
+	private bool isJumpingInWater;
 
 	private void Start()
 	{
 		rigidbody = GetComponent<Rigidbody2D>();
+		groundDetector = GetComponentInChildren<GroundDetector>();
 	}
 
 	private void Update()
@@ -34,6 +39,14 @@ public class PlayerController : MonoBehaviour
 	{
 		Vector2 velocity = rigidbody.velocity;
 
+		HandleMovement(ref velocity);
+		HandleJumping(ref velocity);
+
+		rigidbody.velocity = velocity;
+	}
+
+	private void HandleMovement(ref Vector2 velocity)
+	{
 		if (horizontalInput != 0)
 		{
 			float movementDelta = horizontalInput * movementSpeed * Time.deltaTime;
@@ -51,14 +64,42 @@ public class PlayerController : MonoBehaviour
 				velocity.x = 0f;
 			}
 		}
+	}
+
+	private void HandleJumping(ref Vector2 velocity)
+	{
+		if (groundDetector.isGrounded)
+		{
+			isJumping = false;
+		}
+
+		if (isJumpingInWater)
+		{
+			if (velocity.y <= 0f)
+				isJumpingInWater = false;
+		}
 
 		if (jumpInput)
 		{
-			velocity.y += jumpVelocity;
-
+			// Always consume the input
 			jumpInput = false;
-		}
 
-		rigidbody.velocity = velocity;
+			if (groundDetector.isInWater)
+			{
+				if (!isJumpingInWater)
+				{
+					velocity.y += jumpVelocity * waterJumpVelocityMultiplier;
+					isJumpingInWater = true;
+				}
+			}
+			else if (groundDetector.isGrounded)
+			{
+				if (!isJumping)
+				{
+					velocity.y += jumpVelocity;
+					isJumping = true;
+				}
+			}
+		}
 	}
 }
