@@ -40,9 +40,16 @@ public class PlayerAnimationController : MonoBehaviour
 		else if (groundDetector.isGrounded)
 		{
 			if (isMoving)
-				animator.Play("Run");
+			{
+				if (groundDetector.isTouchingBoulder)
+					animator.Play("Push");
+				else
+					animator.Play("Run");
+			}
 			else
+			{
 				animator.Play("Idle");
+			}
 		}
 		else
 		{

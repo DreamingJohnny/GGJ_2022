@@ -6,6 +6,8 @@ public class GroundDetector : MonoBehaviour
 	[SerializeField] private LayerMask groundLayer = 1 << 6;
 	[SerializeField] private LayerMask waterLayer = 1 << 4;
 	[SerializeField] private LayerMask movingLayer = 1 << 7;
+	[SerializeField] private LayerMask boulderLayer = 1 << 8;
+
 
 	[SerializeField] private Collider2D groundCheckCollider;
 	[SerializeField] private Collider2D waterCheckCollider;
@@ -14,12 +16,14 @@ public class GroundDetector : MonoBehaviour
 	public bool isGrounded;
 	public bool isInWater;
 	public bool isOnMoving;
+	public bool isTouchingBoulder;
 
 	private void FixedUpdate()
 	{
 		isGrounded = groundCheckCollider.IsTouchingLayers(groundLayer);
 		isInWater = waterCheckCollider.IsTouchingLayers(waterLayer);
 		isOnMoving = groundCheckCollider.IsTouchingLayers(movingLayer);
+		isTouchingBoulder = waterCheckCollider.IsTouchingLayers(boulderLayer);
 
 		//new ContactFilter2D(){}
 
