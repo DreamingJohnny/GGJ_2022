@@ -10,7 +10,5 @@ public abstract class ShiftBehaviour : MonoBehaviour
 		OnWorldStateChanged(CurrentWorldState);
 	}
 
-	protected virtual void OnWorldStateChanged(WorldState state)
-	{
-	}
+	protected abstract void OnWorldStateChanged(WorldState state);
 }
