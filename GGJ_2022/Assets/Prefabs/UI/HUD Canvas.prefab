@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3099780575146846168}
   - component: {fileID: 5502109644901549327}
   - component: {fileID: 2089988864940516307}
+  - component: {fileID: 1764192318}
   m_Layer: 5
   m_Name: HUD Canvas
   m_TagString: Untagged
@@ -50,7 +51,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 0.5
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -100,6 +101,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &1764192318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533221178116479026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b50a4fa07b9411cb0754fbc5751a1fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5282487550277278915
 PrefabInstance:
   m_ObjectHideFlags: 0

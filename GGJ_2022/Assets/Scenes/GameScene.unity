@@ -1148,6 +1148,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   realColor: {r: 0.47058824, g: 0.7198039, b: 0.9529412, a: 1}
   darkColor: {r: 0.18431371, g: 0.3038562, b: 0.41568628, a: 1}
+--- !u!20 &2109637713 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 7229423663550559015, guid: 0ca82f066b476ec4ea4cbb694cea7688, type: 3}
+  m_PrefabInstance: {fileID: 7229423662817179510}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2147390402
 GameObject:
   m_ObjectHideFlags: 0
@@ -1249,6 +1254,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3099780575146846168, guid: 4ae158df3a8ac7e499ba4f0638eb8537, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 2109637713}
     - target: {fileID: 4665275940821539070, guid: 4ae158df3a8ac7e499ba4f0638eb8537, type: 3}
       propertyPath: m_Pivot.x
       value: 0

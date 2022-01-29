@@ -4,6 +4,7 @@ using UnityEngine;
 public class ShiftManager : LazyCreatedSingletonBehaviour<ShiftManager>
 {
 	private WorldState worldState;
+	private ShiftEffect shiftEffect;
 
 	public WorldState CurrentWorldState
 	{
@@ -12,9 +13,19 @@ public class ShiftManager : LazyCreatedSingletonBehaviour<ShiftManager>
 		{
 			if (worldState == value)
 				return;
+			if (shiftEffect && shiftEffect.IsPlaying)
+				return;
 
 			worldState = value;
-			WorldStateChanged?.Invoke(worldState);
+
+			if (shiftEffect)
+			{
+				shiftEffect.PlayEffect(NotifyWorldStateChanged);
+			}
+			else
+			{
+				NotifyWorldStateChanged();
+			}
 
 			Debug.Log($"World is now {worldState}");
 		}
@@ -22,9 +33,19 @@ public class ShiftManager : LazyCreatedSingletonBehaviour<ShiftManager>
 
 	public event Action<WorldState> WorldStateChanged;
 
+	private void Start()
+	{
+		shiftEffect = FindObjectOfType<ShiftEffect>();
+	}
+
 	public void ShiftWorld()
 	{
 		CurrentWorldState = CurrentWorldState == WorldState.RealWorld ? WorldState.ShadowLand : WorldState.RealWorld;
+	}
+
+	private void NotifyWorldStateChanged()
+	{
+		WorldStateChanged?.Invoke(worldState);
 	}
 }
 
