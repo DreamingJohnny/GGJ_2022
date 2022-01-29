@@ -5,7 +5,7 @@ public class ShiftManager : LazyCreatedSingletonBehaviour<ShiftManager>
 {
 	private WorldState worldState;
 
-	public WorldState CurrentState
+	public WorldState CurrentWorldState
 	{
 		get => worldState;
 		set
@@ -14,17 +14,17 @@ public class ShiftManager : LazyCreatedSingletonBehaviour<ShiftManager>
 				return;
 
 			worldState = value;
-			StateChanged?.Invoke(worldState);
+			WorldStateChanged?.Invoke(worldState);
 
 			Debug.Log($"World is now {worldState}");
 		}
 	}
 
-	public event Action<WorldState> StateChanged;
+	public event Action<WorldState> WorldStateChanged;
 
 	public void ShiftWorld()
 	{
-		CurrentState = CurrentState == WorldState.RealWorld ? WorldState.ShadowLand : WorldState.RealWorld;
+		CurrentWorldState = CurrentWorldState == WorldState.RealWorld ? WorldState.ShadowLand : WorldState.RealWorld;
 	}
 }
 

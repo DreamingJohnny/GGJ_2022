@@ -1,22 +1,20 @@
 using System;
 using UnityEngine;
 
-public class ChangeColor : MonoBehaviour
+public class ChangeColor : ShiftBehaviour
 {
 	[SerializeField] private Color realColor = Color.green;
 	[SerializeField] private Color darkColor = Color.blue;
 
 	private SpriteRenderer spriteRenderer;
 
-	private void Start()
+	protected override void Start()
 	{
 		spriteRenderer = GetComponent<SpriteRenderer>();
-
-		ShiftManager.Instance.StateChanged += OnStateChanged;
-		OnStateChanged(ShiftManager.Instance.CurrentState);
+		base.Start();
 	}
 
-	private void OnStateChanged(WorldState state)
+	protected override void OnWorldStateChanged(WorldState state)
 	{
 		if (state == WorldState.RealWorld)
 		{

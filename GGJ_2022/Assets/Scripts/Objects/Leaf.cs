@@ -5,11 +5,11 @@ public class Leaf : MonoBehaviour
 {
 	private void Start()
 	{
-		ShiftManager.Instance.StateChanged += OnStateChanged;
-		OnStateChanged(ShiftManager.Instance.CurrentState);
+		ShiftManager.Instance.WorldStateChanged += OnWorldStateChanged;
+		OnWorldStateChanged(ShiftManager.Instance.CurrentWorldState);
 	}
 
-	private void OnStateChanged(WorldState state)
+	private void OnWorldStateChanged(WorldState state)
 	{
 		if (state == WorldState.RealWorld)
 		{
