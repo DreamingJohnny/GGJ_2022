@@ -9,15 +9,19 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private float maxSpeed = 15f;
 	[SerializeField] private float deceleration = 0.9f;
 	[SerializeField] private float jumpVelocity = 25f;
-	[SerializeField] private float waterJumpVelocityMultiplier = 0.5f;
+	[SerializeField] private float swimUpDownSpeed = 5f;
 
-	[Header("Readout")]
 	private new Rigidbody2D rigidbody;
 	private GroundDetector groundDetector;
+
+	[Header("Readout")]
 	public float horizontalInput;
 	public bool jumpInput;
+	public bool swimUpHeld;
+	public bool swimDownHeld;
 	public bool isJumping;
 	public bool isJumpingInWater;
+
 	private bool isFrozenInPlace;
 
 	public bool IsFrozenInPlace
@@ -50,6 +54,8 @@ public class PlayerController : MonoBehaviour
 	{
 		horizontalInput = Input.GetAxis("Horizontal");
 		jumpInput |= Input.GetButtonDown("Jump");
+		swimUpHeld = Input.GetButton("Swim Up");
+		swimDownHeld = Input.GetButton("Swim Down");
 
 		if (Input.GetButtonDown("Shift World"))
 		{
@@ -72,7 +78,6 @@ public class PlayerController : MonoBehaviour
 
 	private void HandleMovement(ref Vector2 velocity)
 	{
-
 		if (horizontalInput != 0)
 		{
 			float movementDelta = horizontalInput * movementSpeed * Time.deltaTime;
@@ -99,10 +104,12 @@ public class PlayerController : MonoBehaviour
 			isJumping = false;
 		}
 
-		if (isJumpingInWater)
+		if (groundDetector.isInWater)
 		{
-			if (velocity.y <= 0f)
-				isJumpingInWater = false;
+			if (swimUpHeld)
+				velocity.y = swimUpDownSpeed;
+			else if (swimDownHeld)
+				velocity.y = -swimUpDownSpeed;
 		}
 
 		if (jumpInput)
@@ -110,15 +117,7 @@ public class PlayerController : MonoBehaviour
 			// Always consume the input
 			jumpInput = false;
 
-			if (groundDetector.isInWater)
-			{
-				if (!isJumpingInWater)
-				{
-					velocity.y += jumpVelocity * waterJumpVelocityMultiplier;
-					isJumpingInWater = true;
-				}
-			}
-			else if (groundDetector.isGrounded)
+			if (groundDetector.isGrounded && !groundDetector.isInWater)
 			{
 				if (!isJumping)
 				{
