@@ -148,8 +148,12 @@ MonoBehaviour:
   movementSpeed: 50
   maxSpeed: 10
   deceleration: 25
-  jumpVelocity: 8
+  jumpVelocity: 11
   waterJumpVelocityMultiplier: 1
+  horizontalInput: 0
+  jumpInput: 0
+  isJumping: 0
+  isJumpingInWater: 0
 --- !u!114 &3576559237354330259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,7 +247,11 @@ MonoBehaviour:
   waterLayer:
     serializedVersion: 2
     m_Bits: 16
+  movingLayer:
+    serializedVersion: 2
+    m_Bits: 128
   groundCheckCollider: {fileID: 2136415219772631868}
   waterCheckCollider: {fileID: 2136415219108914102}
   isGrounded: 0
   isInWater: 0
+  isOnMoving: 0
