@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_New Shader Graph 2
-  m_Shader: {fileID: -6465566751694194690, guid: 0439d4a353ea99945bcb6f4eec9543f4, type: 3}
+  m_Name: Shader Graphs_Stylizedwater
+  m_Shader: {fileID: -6465566751694194690, guid: 9869d8de492377e4894ac66b67e5a2e6, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -32,7 +32,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_93160e6a13384ce295144923642986c5: 4
+    - Vector1_54cf46dd888b424593199eb85c2a5f35: 1
+    - Vector1_5ab209a3c677476fb0c8028581fdf133: 10
+    - Vector1_9943f7700f5d4ffaad0851bb9a783ee5: 0.64
+    - Vector1_bab0eafff70c4b94a38a4c559fca1161: 0.06
     m_Colors:
-    - Color_32e9d377345340eba7333d90ddf9bbe6: {r: 0.03566392, g: 0.005943987, b: 0.06538385, a: 0}
+    - Color_5beacca5e420412484e675a28623fe22: {r: 0.19401923, g: 0.33957097, b: 0.3773585, a: 0.007843138}
+    - Color_8f4db3bb89304510add1fb27218fe384: {r: 0.13671169, g: 0.14859967, b: 0.20209555, a: 0.20392157}
   m_BuildTextureStacks: []

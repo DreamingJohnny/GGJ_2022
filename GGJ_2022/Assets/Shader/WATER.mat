@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_New Shader Graph 2
-  m_Shader: {fileID: -6465566751694194690, guid: 0439d4a353ea99945bcb6f4eec9543f4, type: 3}
+  m_Name: WATER
+  m_Shader: {fileID: -6465566751694194690, guid: a43908855fe850147a06118bf7d6ebaf, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -32,7 +32,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_93160e6a13384ce295144923642986c5: 4
+    - Vector1_01fe82a3d3cb418c938c30b629c36d0a: 1
+    - Vector1_4487325558cf497194d83d9c2fab1aed: 0.1
+    - Vector1_bd69a88eb1c74a8d815cf04b88013484: 7
+    - Vector1_cb96d7ce754f41f5b19af843da597b28: 2
     m_Colors:
-    - Color_32e9d377345340eba7333d90ddf9bbe6: {r: 0.03566392, g: 0.005943987, b: 0.06538385, a: 0}
+    - Color_23b0e92c30f64e13ac61807d68c59d86: {r: 0.367079, g: 0.6788284, b: 0.6886792, a: 0}
+    - Color_bfef436af8f64c9e8f01605e3aae93ef: {r: 0.07943743, g: 0.1828149, b: 0.2078432, a: 0}
   m_BuildTextureStacks: []
