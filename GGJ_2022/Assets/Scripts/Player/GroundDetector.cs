@@ -5,17 +5,21 @@ public class GroundDetector : MonoBehaviour
 {
 	[SerializeField] private LayerMask groundLayer = 1 << 6;
 	[SerializeField] private LayerMask waterLayer = 1 << 4;
+	[SerializeField] private LayerMask movingLayer = 1 << 7;
+
 	[SerializeField] private Collider2D groundCheckCollider;
 	[SerializeField] private Collider2D waterCheckCollider;
 
 	[Header("Readout")]
 	public bool isGrounded;
 	public bool isInWater;
+	public bool isOnMoving;
 
 	private void FixedUpdate()
 	{
 		isGrounded = groundCheckCollider.IsTouchingLayers(groundLayer);
 		isInWater = waterCheckCollider.IsTouchingLayers(waterLayer);
+		isOnMoving = groundCheckCollider.IsTouchingLayers(movingLayer);
 
 		//new ContactFilter2D(){}
 
@@ -28,5 +32,17 @@ public class GroundDetector : MonoBehaviour
 		// {
 		// 	if (overlappingCollider.IsTouchingLayers())
 		// }
+	}
+
+	public void OnTriggerEnter2D(Collider2D collision) {
+		if (collision.gameObject.layer == LayerMask.NameToLayer("Moving")) {
+			transform.parent.SetParent(collision.gameObject.transform);
+		} 
+	}
+
+	public void OnTriggerExit2D(Collider2D collision) {
+		if(collision.gameObject.layer == LayerMask.NameToLayer("Moving")) {
+			transform.parent.SetParent(null);
+		}
 	}
 }

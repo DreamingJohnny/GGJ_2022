@@ -39,7 +39,6 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-
 	private void Start()
 	{
 		rigidbody = GetComponent<Rigidbody2D>();
@@ -72,6 +71,7 @@ public class PlayerController : MonoBehaviour
 
 	private void HandleMovement(ref Vector2 velocity)
 	{
+
 		if (horizontalInput != 0)
 		{
 			float movementDelta = horizontalInput * movementSpeed * Time.deltaTime;
