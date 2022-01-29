@@ -11,12 +11,13 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private float jumpVelocity = 25f;
 	[SerializeField] private float waterJumpVelocityMultiplier = 0.5f;
 
+	[Header("Readout")]
 	private new Rigidbody2D rigidbody;
 	private GroundDetector groundDetector;
-	private float horizontalInput;
-	private bool jumpInput;
-	private bool isJumping;
-	private bool isJumpingInWater;
+	public float horizontalInput;
+	public bool jumpInput;
+	public bool isJumping;
+	public bool isJumpingInWater;
 	private bool isFrozenInPlace;
 
 	public bool IsFrozenInPlace
