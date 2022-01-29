@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerAnimationController : MonoBehaviour
 {
 	[SerializeField] private AnimationClip landAnimation;
+	[SerializeField] private AnimationClip takeDamageAnimation;
 
 	private Animator animator;
 	private PlayerController playerController;
@@ -74,5 +75,11 @@ public class PlayerAnimationController : MonoBehaviour
 	private void WaitFor(float seconds)
 	{
 		animationWaitTimer = seconds;
+	}
+
+	public void PlayTakeDamageAnimation()
+	{
+		animator.Play("Take Damage");
+		WaitFor(takeDamageAnimation.length);
 	}
 }
