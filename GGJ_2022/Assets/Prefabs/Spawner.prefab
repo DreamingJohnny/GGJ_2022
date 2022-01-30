@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6715295013074124176}
   - component: {fileID: -7892958510176052427}
+  - component: {fileID: 8966068170019940520}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -44,4 +45,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leaf: {fileID: 3690821934802833306, guid: 450265642de36a342ab8011d61bb1445, type: 3}
-  maxTimeSpan: 10
+  maxTimeSpan: 6
+--- !u!65 &8966068170019940520
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689731498967163881}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
