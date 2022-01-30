@@ -21,20 +21,19 @@ public class CameraShake : SingletonBehaviour<CameraShake>
 	private void Update()
 	{
 		shakeTimer += Time.deltaTime;
-		// if (shakeTimer >= shakeDuration)
-		// {
-		// 	shake.m_AmplitudeGain = 0f;
-		// }
-		if (shakeDuration > 0)
-		{
-			float t = Falloff(shakeTimer / shakeDuration);
-			shake.m_AmplitudeGain = Mathf.Lerp(shakeIntensity, 0f, t);
-			print(new {t = t, gain = shake.m_AmplitudeGain});
-		}
-		else
+		if (shakeTimer >= shakeDuration)
 		{
 			shake.m_AmplitudeGain = 0f;
 		}
+		// if (shakeDuration > 0)
+		// {
+		// 	float t = Falloff(shakeTimer / shakeDuration);
+		// 	shake.m_AmplitudeGain = Mathf.Lerp(shakeIntensity, 0f, t);
+		// }
+		// else
+		// {
+		// 	shake.m_AmplitudeGain = 0f;
+		// }
 	}
 
 	public void Shake(float intensity, float duration)

@@ -43,7 +43,7 @@ public class PlayerHealth : MonoBehaviour
 			return false;
 
 		health -= amount;
-		CameraShake.Instance.Shake(5f, 1f);
+		CameraShake.Instance.Shake(5f, .1f);
 		onHealthChanged.Invoke();
 
 		if (health <= 0)

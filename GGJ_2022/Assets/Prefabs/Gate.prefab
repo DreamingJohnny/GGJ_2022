@@ -646,7 +646,7 @@ MonoBehaviour:
   playerBlocker: {fileID: 538719474}
   breakSound: {fileID: 1561579212}
   shakeIntensity: 10
-  shakeDuration: 10
+  shakeDuration: 0.6
 --- !u!54 &5292851951828744819
 Rigidbody:
   m_ObjectHideFlags: 0
