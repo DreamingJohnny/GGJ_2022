@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
 		if (horizontalInput != 0)
 			lastNonZeroHorizontalInput = horizontalInput;
 
-		if (groundDetector.isGrounded && Mathf.Abs(lastNonZeroHorizontalInput) > 0.05f)
+		if (groundDetector.isGrounded && Mathf.Abs(rigidbody.velocity.x) > 0.1f)
 		{
 			if (!runSound.isPlaying)
 				runSound.Play();

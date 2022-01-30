@@ -36,7 +36,7 @@ public class PlayerAnimationController : MonoBehaviour
 			lastNonZeroHorizontalInput = playerController.horizontalInput;
 
 		Vector2 velocity = rigidbody.velocity;
-		bool isMoving = Mathf.Abs(velocity.x) > 0.05f;
+		bool isMoving = Mathf.Abs(velocity.x) > 0.1f;
 
 		spriteRenderer.flipX = lastNonZeroHorizontalInput < 0;
 
