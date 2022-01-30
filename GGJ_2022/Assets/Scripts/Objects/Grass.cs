@@ -40,9 +40,6 @@ public class Grass : ShiftBehaviour
 	private void HurtPlayer()
 	{
 		playerInTrigger.TakeDamage(damage);
-
-		Rigidbody2D body = playerInTrigger.GetComponent<Rigidbody2D>();
-		Vector2 knockbackDirection = ((Vector2)playerInTrigger.transform.position - (Vector2)transform.position).normalized;
-		body.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
+		playerInTrigger.Knockback(transform.position, knockbackForce);
 	}
 }
