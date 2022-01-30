@@ -10,8 +10,8 @@ public class Spikes : MonoBehaviour
 	{
 		if (col.gameObject.TryGetComponent(out PlayerHealth playerHealth))
 		{
-			playerHealth.TakeDamage(damage);
-			playerHealth.Knockback(col.GetContact(0).point, knockbackForce);
+			if (playerHealth.TakeDamage(damage))
+				playerHealth.Knockback(col.GetContact(0).point, knockbackForce);
 		}
 	}
 }

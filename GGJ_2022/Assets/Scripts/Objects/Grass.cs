@@ -39,7 +39,7 @@ public class Grass : ShiftBehaviour
 
 	private void HurtPlayer()
 	{
-		playerInTrigger.TakeDamage(damage);
-		playerInTrigger.Knockback(transform.position, knockbackForce);
+		if (playerInTrigger.TakeDamage(damage))
+			playerInTrigger.Knockback(transform.position, knockbackForce);
 	}
 }

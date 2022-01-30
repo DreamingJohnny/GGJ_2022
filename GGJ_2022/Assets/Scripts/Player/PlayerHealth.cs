@@ -7,11 +7,12 @@ public class PlayerHealth : MonoBehaviour
 {
 	[SerializeField] private int health = 3;
 	[SerializeField] private int maxHealth = 3;
+	[SerializeField] private float iFrameTime = 0.5f;
 	[SerializeField] public UnityEvent onHealthChanged;
+	[SerializeField] private GameObject currentCheckPoint;
 
 	private Rigidbody2D body;
-
-	[SerializeField] private GameObject currentCheckPoint;
+	private float iFrameTimer;
 
 	public int Health => Mathf.Clamp(health, 0, maxHealth);
 
@@ -31,8 +32,16 @@ public class PlayerHealth : MonoBehaviour
 
 	}
 
-	public void TakeDamage(int amount)
+	private void Update()
 	{
+		iFrameTimer -= Time.deltaTime;
+	}
+
+	public bool TakeDamage(int amount)
+	{
+		if (iFrameTimer > 0f)
+			return false;
+
 		health -= amount;
 		onHealthChanged.Invoke();
 
@@ -49,6 +58,9 @@ public class PlayerHealth : MonoBehaviour
 				health = maxHealth;
 			}
 		}
+
+		iFrameTimer = iFrameTime;
+		return true;
 	}
 
 	public void Knockback(Vector3 sourcePosition, float force)
