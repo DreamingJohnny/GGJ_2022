@@ -5,8 +5,10 @@ public class Door : ShiftBehaviour
 {
 	[SerializeField] private Collider2D boulderBlocker;
 	[SerializeField] private Collider2D playerBlocker;
-
 	[SerializeField] private AudioSource breakSound;
+
+	[SerializeField] private float shakeIntensity = 5f;
+	[SerializeField] private float shakeDuration = 0.4f;
 
 	private Rigidbody[] chunks;
 	private bool isBroken;
@@ -53,6 +55,8 @@ public class Door : ShiftBehaviour
 			isBroken = true;
 			playerBlocker.enabled = false;
 			breakSound.Play();
+
+			CameraShake.Instance.Shake(shakeIntensity, shakeDuration);
 		}
 	}
 }

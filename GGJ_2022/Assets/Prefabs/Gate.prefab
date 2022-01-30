@@ -645,6 +645,8 @@ MonoBehaviour:
   boulderBlocker: {fileID: 1752127369}
   playerBlocker: {fileID: 538719474}
   breakSound: {fileID: 1561579212}
+  shakeIntensity: 10
+  shakeDuration: 10
 --- !u!54 &5292851951828744819
 Rigidbody:
   m_ObjectHideFlags: 0
