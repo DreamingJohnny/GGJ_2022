@@ -30,4 +30,9 @@ public class HealthBar : MonoBehaviour
 	{
 		UpdateWidth(fill, heartWidth * playerHealth.Health);
 	}
+
+	public void RefreshHealthValue()
+	{
+		OnPlayerHealthChanged();
+	}
 }

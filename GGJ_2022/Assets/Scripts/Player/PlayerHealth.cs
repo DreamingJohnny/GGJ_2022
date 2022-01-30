@@ -57,6 +57,12 @@ public class PlayerHealth : MonoBehaviour
 			else {
 				transform.position = currentCheckPoint.transform.position;
 				health = maxHealth;
+
+				HealthBar healthBar = FindObjectOfType<HealthBar>();
+				if (healthBar)
+				{
+					healthBar.RefreshHealthValue();
+				}
 			}
 		}
 
