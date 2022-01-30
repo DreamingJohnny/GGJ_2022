@@ -8,10 +8,13 @@ public class GroundDetector : MonoBehaviour
 	[SerializeField] private LayerMask movingLayer = 1 << 7;
 	[SerializeField] private LayerMask boulderLayer = 1 << 8;
 
-
 	[SerializeField] private Collider2D groundCheckCollider;
 	[SerializeField] private Collider2D waterCheckCollider;
 	[SerializeField] private Collider2D boulderCheckCollider;
+
+	[Header("Audio")]
+	[SerializeField] private AudioSource waterSplash;
+	[SerializeField] private AudioSource underwaterLoop;
 
 	[Header("Readout")]
 	public bool isGrounded;
@@ -21,22 +24,27 @@ public class GroundDetector : MonoBehaviour
 
 	private void FixedUpdate()
 	{
+		bool wasInWater = isInWater;
+
 		isGrounded = groundCheckCollider.IsTouchingLayers(groundLayer);
 		isInWater = waterCheckCollider.IsTouchingLayers(waterLayer);
 		isOnMoving = groundCheckCollider.IsTouchingLayers(movingLayer);
 		isTouchingBoulder = boulderCheckCollider.IsTouchingLayers(boulderLayer);
 
-		//new ContactFilter2D(){}
+		if (!wasInWater && isInWater)
+		{
+			waterSplash.Play();
+		}
 
-		// Collider2D[] overlaps = Physics2D.OverlapBoxAll(
-		// 	transform.TransformPoint(checkCollider.offset),
-		// 	checkCollider.size,
-		// 	transform.eulerAngles.z);
-		//
-		// foreach (Collider2D overlappingCollider in overlaps)
-		// {
-		// 	if (overlappingCollider.IsTouchingLayers())
-		// }
+		if (isInWater)
+		{
+			if (!underwaterLoop.isPlaying)
+				underwaterLoop.Play();
+		}
+		else
+		{
+			underwaterLoop.Stop();
+		}
 	}
 
 	public void OnTriggerEnter2D(Collider2D collision) {
