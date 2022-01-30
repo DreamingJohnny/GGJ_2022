@@ -147,4 +147,12 @@ public class PlayerController : MonoBehaviour
 			}
 		}
 	}
+
+	public void DisablePlayer()
+	{
+		enabled = false;
+		horizontalInput = 0f;
+		rigidbody.velocity = Vector2.zero;
+		runSound.Stop();
+	}
 }
