@@ -11,14 +11,24 @@ public class PlayerHealth : MonoBehaviour
 
 	private Rigidbody2D body;
 
+	[SerializeField] private GameObject currentCheckPoint;
+
 	public int Health => Mathf.Clamp(health, 0, maxHealth);
 
 	public int MaxHealth => maxHealth;
 
+	public void SetNewCheckPoint(GameObject newCheckPoint) {
+		currentCheckPoint = newCheckPoint;
+		Debug.Log("CheckPoint is set!");
+	}
+
 	private void Awake()
 	{
 		health = maxHealth;
+
 		body = GetComponent<Rigidbody2D>();
+		currentCheckPoint = null;
+
 	}
 
 	public void TakeDamage(int amount)
@@ -29,7 +39,15 @@ public class PlayerHealth : MonoBehaviour
 		if (health <= 0)
 		{
 			Debug.Log("Dead");
-			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+			
+			if(currentCheckPoint == null) {
+				Debug.Log("Game Restarts");
+				SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+			}
+			else {
+				transform.position = currentCheckPoint.transform.position;
+				health = maxHealth;
+			}
 		}
 	}
 
