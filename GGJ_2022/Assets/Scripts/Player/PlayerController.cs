@@ -11,11 +11,16 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private float jumpVelocity = 25f;
 	[SerializeField] private float swimUpDownSpeed = 5f;
 
+	[Header("Audio")]
+	[SerializeField] private AudioSource jumpSound;
+	[SerializeField] private AudioSource runSound;
+
 	private new Rigidbody2D rigidbody;
 	private GroundDetector groundDetector;
 
 	[Header("Readout")]
 	public float horizontalInput;
+	public float lastNonZeroHorizontalInput;
 	public bool jumpInput;
 	public bool swimUpHeld;
 	public bool swimDownHeld;
@@ -60,6 +65,19 @@ public class PlayerController : MonoBehaviour
 		if (Input.GetButtonDown("Shift World"))
 		{
 			ShiftManager.Instance.ShiftWorld();
+		}
+
+		if (horizontalInput != 0)
+			lastNonZeroHorizontalInput = horizontalInput;
+
+		if (groundDetector.isGrounded && Mathf.Abs(lastNonZeroHorizontalInput) > 0.05f)
+		{
+			if (!runSound.isPlaying)
+				runSound.Play();
+		}
+		else
+		{
+			runSound.Pause();
 		}
 	}
 
@@ -123,6 +141,8 @@ public class PlayerController : MonoBehaviour
 				{
 					velocity.y += jumpVelocity;
 					isJumping = true;
+
+					jumpSound.Play();
 				}
 			}
 		}

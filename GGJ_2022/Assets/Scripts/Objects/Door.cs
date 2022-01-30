@@ -6,6 +6,8 @@ public class Door : ShiftBehaviour
 	[SerializeField] private Collider2D boulderBlocker;
 	[SerializeField] private Collider2D playerBlocker;
 
+	[SerializeField] private AudioSource breakSound;
+
 	private Rigidbody[] chunks;
 	private bool isBroken;
 
@@ -37,6 +39,9 @@ public class Door : ShiftBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
+		if (isBroken)
+			return;
+
 		if (CurrentWorldState == WorldState.RealWorld &&
 			other.gameObject.layer == LayerMask.NameToLayer("Boulder"))
 		{
@@ -47,6 +52,7 @@ public class Door : ShiftBehaviour
 
 			isBroken = true;
 			playerBlocker.enabled = false;
+			breakSound.Play();
 		}
 	}
 }
