@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
 
 	private void Update()
 	{
-		horizontalInput = Input.GetAxis("Horizontal");
+		horizontalInput = Input.GetAxisRaw("Horizontal");
 		jumpInput |= Input.GetButtonDown("Jump");
 		swimUpHeld = Input.GetButton("Swim Up");
 		swimDownHeld = Input.GetButton("Swim Down");
@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
 		if (horizontalInput != 0)
 			lastNonZeroHorizontalInput = horizontalInput;
 
-		if (groundDetector.isGrounded && Mathf.Abs(rigidbody.velocity.x) > 0.1f)
+		if (groundDetector.isGrounded && Mathf.Abs(rigidbody.velocity.x) > 0.2f)
 		{
 			if (!runSound.isPlaying)
 				runSound.Play();
